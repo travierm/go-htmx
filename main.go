@@ -15,7 +15,7 @@ func main() {
 			"Name": "Wyndham",
 		}
 
-		return e.Render(http.StatusOK, "index", res)
+		return e.Render(http.StatusOK, "store", res)
 	})
 
 	e.HTTPErrorHandler = customHTTPErrorHandler
