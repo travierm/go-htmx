@@ -3,23 +3,47 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
 
-	"github.com/labstack/echo"
+	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
+	"github.com/rs/zerolog"
 )
 
 func main() {
 	e := echo.New()
-	NewTemplateRenderer(e, "public/*.html")
-	e.GET("/", func(e echo.Context) error {
-		res := map[string]interface{}{
-			"Name": "Wyndham",
-		}
 
-		return e.Render(http.StatusOK, "store", res)
+	logger := zerolog.New(os.Stdout)
+	e.Use(middleware.RequestLoggerWithConfig(middleware.RequestLoggerConfig{
+		LogURI:    true,
+		LogStatus: true,
+		LogValuesFunc: func(c echo.Context, v middleware.RequestLoggerValues) error {
+			logger.Info().
+				Str("URI", v.URI).
+				Int("status", v.Status).
+				Msg("request")
+
+			return nil
+		},
+	}))
+	NewTemplateRenderer(e, "public/*.html")
+
+	logger.Log().Msg("hello world")
+	e.GET("/", func(e echo.Context) error {
+		return HomePage(e, "Travier")
 	})
 
 	e.HTTPErrorHandler = customHTTPErrorHandler
 	e.Logger.Fatal(e.Start(":1323"))
+
+}
+
+func HomePage(e echo.Context, name string) error {
+	res := map[string]interface{}{
+		"Name": name,
+	}
+
+	return e.Render(http.StatusOK, "index", res)
 }
 
 func customHTTPErrorHandler(err error, c echo.Context) {
