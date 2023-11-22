@@ -1,5 +1,5 @@
 dev:
-	air -c air.toml
+	air
 	
 tailwind-dev:
 	bun run dev
