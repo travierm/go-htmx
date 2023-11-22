@@ -1,0 +1,12 @@
+{
+  "name": "go-htmx",
+  "type": "module",
+  "scripts": {
+    "build": "bunx tailwindcss -i ./assets/app.css -o ./public/build.css",
+    "dev": "bunx tailwindcss -i ./assets/app.css -o ./public/build.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.3"
+  },
+  "dependencies": {}
+}

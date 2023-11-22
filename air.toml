@@ -1,0 +1,15 @@
+# Config file for [Air](https://github.com/cosmtrek/air) in TOML format
+
+# Working directory
+# . or absolute path, please note that the directories following must be under root.
+root = "."
+tmp_dir = "tmp"
+
+[build]
+# Array of commands to run before each build
+
+exclude_dir = ["node_modules", "tmp"]
+# Watch these directories if you specified.
+include_dir = []
+# Watch these files.
+include_file = []

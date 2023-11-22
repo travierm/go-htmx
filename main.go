@@ -26,9 +26,9 @@ func main() {
 			return nil
 		},
 	}))
+
 	NewTemplateRenderer(e, "public/*.html")
 
-	logger.Log().Msg("hello world")
 	e.GET("/", func(e echo.Context) error {
 		return HomePage(e, "Travier")
 	})
