@@ -7,7 +7,7 @@ import (
 )
 
 func InitializeRoutes(e *echo.Echo) {
-	NewTemplateRenderer(e, "public/index.html", "views/*.html")
+	NewTemplateRenderer(e, "./views/*.html")
 
 	e.GET("/", func(c echo.Context) error {
 		return homePage(c, "Travier")
