@@ -1,4 +1,4 @@
-module go-htmx
+module github.com/travierm/go-htmx
 
 go 1.21.3
 

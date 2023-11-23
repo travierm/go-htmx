@@ -5,26 +5,13 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
+	"github.com/travierm/go-htmx/pkg/routes"
 )
 
 func main() {
 	e := echo.New()
 
-	// logger := zerolog.New(os.Stdout)
-	// // e.Use(middleware.RequestLoggerWithConfig(middleware.RequestLoggerConfig{
-	// // 	LogURI:    true,
-	// // 	LogStatus: true,
-	// // 	LogValuesFunc: func(c echo.Context, v middleware.RequestLoggerValues) error {
-	// // 		logger.Info().
-	// // 			Str("URI", v.URI).
-	// // 			Int("status", v.Status).
-	// // 			Msg("request")
-
-	// // 		return nil
-	// // 	},
-	// // }))
-
-	InitializeRoutes(e)
+	routes.InitializeRoutes(e)
 
 	e.HTTPErrorHandler = customHTTPErrorHandler
 	e.Logger.Fatal(e.Start(":1323"))
